@@ -89,12 +89,14 @@ Will be react application
     - Then run:
             
             docker run
-                --name oracle_db 
+                --name oracle_db
                 -p 1522:1521
                 -e ORACLE_PWD=admin
-                -v c:/oracleExpress/data:/opt/oracle/oradata 
-                -v c:/oracleExpress/setup:/opt/oracle/scripts/setup 
-                -v c:/oracleExpress/startup:/opt/oracle/scripts/startup 
+                -v c:/oracleExpress/data:/opt/oracle/oradata
+                -v c:/oracleExpress/setup:/opt/oracle/scripts/setup
+                -v c:/oracleExpress/startup:/opt/oracle/scripts/startup
                 vegarringdal/oracledb-express-21.3.0:1.0.0
 
-
+One liner:
+* `docker run --name oracle_db -p 1522:1521 -e ORACLE_PWD=admin -v c:/oracleExpress/data:/opt/oracle/oradata -v c:/oracleExpress/setup:/opt/oracle/scripts/setup -v c:/oracleExpress/startup:/opt/oracle/scripts/startup vegarringdal/oracledb-express-21.3.0:1.0.0`
+* next time you should be able to start with `docker start oracle_db`
