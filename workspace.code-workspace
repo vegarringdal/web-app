@@ -1,25 +1,26 @@
 {
     "folders": [
+    
         {
-            "name": "app",
-            "path": "./"
-        },
-        {
-            "name": "app-backend",
+            "name": "backend",
             "path": "./app-backend"
         },
         {
-            "name": "app-common",
+            "name": "common",
             "path": "./app-common"
         },
         {
-            "name": "app-frontend",
+            "name": "frontend",
             "path": "./app-frontend"
         },
         {
-            "name": "app-guitools",
+            "name": "guitools",
             "path": "./app-guitools"
-        }
+        },
+        {
+            "name": "root",
+            "path": "./"
+        },
     ],
     "settings": {}
 }
