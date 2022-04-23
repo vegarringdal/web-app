@@ -9,7 +9,7 @@ const app = TypeChecker({
 
 app.printSettings();
 app.inspectAndPrint();
-app.worker_watch(["./", "../rad-common/src", "../rad-guitools/src"]);
+app.worker_watch(["./src","../rad-common/src", "../rad-guitools/src"]);
 
 const appBackend = TypeChecker({
     basePath: "./rad-backend",
@@ -20,7 +20,7 @@ const appBackend = TypeChecker({
 
 appBackend.printSettings();
 appBackend.inspectAndPrint();
-appBackend.worker_watch("./");
+appBackend.worker_watch("./src");
 
 const appCommon = TypeChecker({
     basePath: "./rad-common",
@@ -31,7 +31,7 @@ const appCommon = TypeChecker({
 
 appCommon.printSettings();
 appCommon.inspectAndPrint();
-appCommon.worker_watch("./");
+appCommon.worker_watch("./src");
 
 const appTools = TypeChecker({
     basePath: "./rad-guitools",
@@ -42,4 +42,4 @@ const appTools = TypeChecker({
 
 appTools.printSettings();
 appTools.inspectAndPrint();
-appTools.worker_watch("./");
+appTools.worker_watch("./src");
