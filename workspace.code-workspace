@@ -1,6 +1,5 @@
 {
     "folders": [
-    
         {
             "name": "backend",
             "path": "./app-backend"
@@ -20,7 +19,7 @@
         {
             "name": "root",
             "path": "./"
-        },
+        }
     ],
     "settings": {}
 }

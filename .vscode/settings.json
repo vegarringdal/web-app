@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "app-backend/": true,
+        "app-common/": true,
+        "app-frontend/": true,
+        "app-guitools/": true,
+        "node_modules/": true
+    }
+}
