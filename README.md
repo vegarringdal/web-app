@@ -71,8 +71,10 @@ Will be react application
 # How to get started (with this app)
 
 - `git clone https://github.com/vegarringdal/web-rad`
-- `npm run gitclone`
+- open workspace file.
 - `npm install`
+- `npm run gitclone`
+- `npm install` (so sub repo gets all installed..)
 - start redis `docker run -p 6379:6379 -d redis`
 - start oracle express
     - create folder called `oracleExpress` on c disk
