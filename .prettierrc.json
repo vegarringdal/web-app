@@ -1,0 +1,16 @@
+{
+    "trailingComma": "none",
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false,
+    "printWidth": 120,
+    "proseWrap": "always",
+    "overrides": [
+        {
+            "files": ["**/*config*.ts"],
+            "options": {
+                "printWidth": 150
+            }
+        }
+    ]
+}

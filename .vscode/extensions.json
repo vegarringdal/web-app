@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "eamodio.gitlens",
+        "pflannery.vscode-versionlens",
+        "esbenp.prettier-vscode",
+        "gruntfuggly.todo-tree",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "redhat.vscode-yaml",
+        "irongeek.vscode-env",
+        "humao.rest-client"
+    ]
+}
