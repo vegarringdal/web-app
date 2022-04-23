@@ -1,25 +1,25 @@
 {
-  "folders": [
-    {
-      "name": "app-common",
-      "path": "./app-common"
-    },
-    {
-      "name": "app",
-      "path": "./"
-    },
-    {
-      "name": "app-backend",
-      "path": "./app-backend"
-    },
-    {
-      "name": "app-guitools",
-      "path": "./app-guitools"
-    },
-    {
-      "name": "app-frontend",
-      "path": "./app-frontend"
-    }
-  ],
-  "settings": {}
+    "folders": [
+        {
+            "name": "app",
+            "path": "./"
+        },
+        {
+            "name": "app-backend",
+            "path": "./app-backend"
+        },
+        {
+            "name": "app-common",
+            "path": "./app-common"
+        },
+        {
+            "name": "app-frontend",
+            "path": "./app-frontend"
+        },
+        {
+            "name": "app-guitools",
+            "path": "./app-guitools"
+        }
+    ],
+    "settings": {}
 }
