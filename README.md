@@ -1,4 +1,4 @@
-# web-app
+# web-rad
 
 Experiment for web application using mulitirepo to try and share parts between applications. Will work more like a template instead of npm modules you use.
 
@@ -10,7 +10,7 @@ Im not 100% sure how this will end🤪 and might just blow up 💣 before I mana
 Will be very messy in the begining, since I will pull inn existing projects/experiments to save time/reuse.
 
 
-## web-app
+## web-rad
 
 Will be root of application, you will only edit name/url to repos.
 
@@ -19,10 +19,10 @@ TODO: make list of edits needed for new project
 
 This will pull inn all other repos
 
-[repo](https://github.com/vegarringdal/web-app)
+[repo](https://github.com/vegarringdal/web-rad)
 
 
-## web-app-backend
+## web-rad-backend
 
 This will not be something you edit, just fork
 
@@ -33,9 +33,9 @@ Will use nodejs as web hosting/api server
 Will need redis as for session state, oracle for database (we use oracle at work...) and azure ad for userlogin (user only, access roles will be in database)
 
 
-[repo](https://github.com/vegarringdal/web-app-backend)
+[repo](https://github.com/vegarringdal/web-rad-backend)
 
-## web-app-common
+## web-rad-common
 
 This will not be something you edit, just fork
 
@@ -44,9 +44,9 @@ Will be common code for config, and if any utils need to be shared between front
 This will need to be selfcontained/no external libs
 
 
-[repo](https://github.com/vegarringdal/web-app-common)
+[repo](https://github.com/vegarringdal/web-rad-common)
 
-## web-app-guitools
+## web-rad-guitools
 
 This will not be something you edit, just fork
 
@@ -54,9 +54,9 @@ This will be framework for frontend.
 
 Will use react & vanillajs libs.
 
-[repo](https://github.com/vegarringdal/web-app-guitools)
+[repo](https://github.com/vegarringdal/web-rad-guitools)
 
-## web-app-frontend
+## web-rad-frontend
 
 This will be the part you fork template and edit.
 
@@ -64,13 +64,13 @@ Will be main application using the other parts as help
 
 Will be react application
 
-[repo](https://github.com/vegarringdal/web-app-frontend)
+[repo](https://github.com/vegarringdal/web-rad-frontend)
 
 
 
 # How to get started (with this app)
 
-- `git clone https://github.com/vegarringdal/web-app`
+- `git clone https://github.com/vegarringdal/web-rad`
 - `npm run gitclone`
 - `npm install`
 - start redis `docker run -p 6379:6379 -d redis`

@@ -1,9 +1,9 @@
 {
     "files.exclude": {
-        "app-backend/": true,
-        "app-common/": true,
-        "app-frontend/": true,
-        "app-guitools/": true,
+        "rad-backend/": true,
+        "rad-common/": true,
+        "rad-frontend/": true,
+        "rad-guitools/": true,
         "node_modules/": true
     }
 }

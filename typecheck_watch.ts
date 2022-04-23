@@ -1,19 +1,19 @@
 import { TypeChecker } from "esbuild-helpers";
 
 const app = TypeChecker({
-    basePath: "./app-frontend",
-    name: "app-frontend",
+    basePath: "./rad-frontend",
+    name: "rad-frontend",
     shortenFilenames: false,
     tsConfig: "./tsconfig.json"
 });
 
 app.printSettings();
 app.inspectAndPrint();
-app.worker_watch(["./", "../app-common/src", "../app-guitools/src"]);
+app.worker_watch(["./", "../rad-common/src", "../rad-guitools/src"]);
 
 const appBackend = TypeChecker({
-    basePath: "./app-backend",
-    name: "app-backend",
+    basePath: "./rad-backend",
+    name: "rad-backend",
     shortenFilenames: false,
     tsConfig: "./tsconfig.json"
 });
@@ -23,8 +23,8 @@ appBackend.inspectAndPrint();
 appBackend.worker_watch("./");
 
 const appCommon = TypeChecker({
-    basePath: "./app-common",
-    name: "app-common",
+    basePath: "./rad-common",
+    name: "rad-common",
     shortenFilenames: false,
     tsConfig: "./tsconfig.json"
 });
@@ -34,8 +34,8 @@ appCommon.inspectAndPrint();
 appCommon.worker_watch("./");
 
 const appTools = TypeChecker({
-    basePath: "./app-tools",
-    name: "app-tools",
+    basePath: "./rad-tools",
+    name: "rad-tools",
     shortenFilenames: false,
     tsConfig: "./tsconfig.json"
 });

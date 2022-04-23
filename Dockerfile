@@ -17,10 +17,10 @@ COPY config_defaults.ts ./
 COPY tsconfig*.json ./
 
 # copy main folders
-COPY app-server app-server
-COPY app-common app-common
-COPY app-server app-server
-COPY app-guitools app-guitools
+COPY rad-server rad-server
+COPY rad-common rad-common
+COPY rad-server rad-server
+COPY rad-guitools rad-guitools
 
 
 # make sure we have newest npm
@@ -38,4 +38,4 @@ COPY --chown=node:node . /usr/src/app
 USER node
 
 EXPOSE 80
-CMD [ "node", "./app-server/dist/index.js" ]
+CMD [ "node", "./rad-server/dist/index.js" ]

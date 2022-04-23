@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach app-backend",
+            "name": "Attach rad-backend",
             "port": 9229,
             "request": "attach",
             "skipFiles": ["<node_internals>/**"],
@@ -25,11 +25,11 @@
             }
         },
         {
-            "name": "Jest Current File app-backend (jest)",
+            "name": "Jest Current File rad-backend (jest)",
             "type": "node",
             "request": "launch",
             "program": "${workspaceFolder}/node_modules/.bin/jest",
-            "args": ["${fileBasenameNoExtension}", "--config", "./app-backend/jest.config.js"],
+            "args": ["${fileBasenameNoExtension}", "--config", "./rad-backend/jest.config.js"],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "disableOptimisticBPs": true,
