@@ -108,16 +108,6 @@ next add `.env` to root
 
 ```bash
 # db connections
-DEFAULT_DB_USERNAME=TESTDB
-DEFAULT_DB_PASSWORD=TESTDB
-DEFAULT_DB_CONNECTION_STRING=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=xe)))
-REDIS_URL=redis://localhost:6379
-
-# logs
-CONSOLE_SELECT=true
-#CONSOLE_INFO=true
-
-
 AZURE_CLIENT_ID=add_your_own_ID
 AZURE_TENDANT_URI=https://login.microsoftonline.com/add_your_tendantid
 AZURE_SECRET=add_your_secret
@@ -173,6 +163,11 @@ DB_CONNECTION_DB_OP         # default: WEB-UPDATE
 DB_CONNECTION_ACTION        # NOT IN USE -> SENDING REPORT NAME
 
 
+DB_USERNAME                 # default TESTDB
+DB_PASSWORD                 # default TESTDB
+DB_CONNECTION_STRING        # default (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=xe)))
+REDIS_URL                   # default redis://localhost:6379
+
 # Azure - https://login.microsoftonline.com/
 AZURE_CLIENT_ID             # default: UNKNOW ID
 AZURE_TENDANT_URI           # no default... Sample: https://login.microsoftonline.com/{TENDANTID}  (authority part of config)
@@ -181,16 +176,6 @@ AZURE_SCOPES                # default : user.read  --> use comma to split
 ACTIVATE_AZURE_FAKE_SUCCESS # default false;
 AZURE_FAKE_ROLES: string[]  # no default, add with comma to split
 
-
-# Here we supply just names of connection
-# Use comma to split them
-DB_CONNECTIONS_NAMES_ARRAY  # default: DEFAULT
-
-# Environment variable names only!
-# Use comma to split them
-DB_USERNAME_ARRAY           # default: DEFAULT_DB_USERNAME
-DB_CONNECTION_STRING_ARRAY  # default: DEFAULT_DB_CONNECTION_STRING
-DB_PASSWORD_ARRAY           # default: DEFAULT_DB_PASSWORD
 
 
 ```
