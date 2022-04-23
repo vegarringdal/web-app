@@ -34,8 +34,8 @@ appCommon.inspectAndPrint();
 appCommon.worker_watch("./");
 
 const appTools = TypeChecker({
-    basePath: "./rad-tools",
-    name: "rad-tools",
+    basePath: "./rad-guitools",
+    name: "rad-guitools",
     shortenFilenames: false,
     tsConfig: "./tsconfig.json"
 });
@@ -43,4 +43,3 @@ const appTools = TypeChecker({
 appTools.printSettings();
 appTools.inspectAndPrint();
 appTools.worker_watch("./");
-

@@ -102,3 +102,97 @@ Will be react application
 One liner:
 * `docker run --name oracle_db -p 1522:1521 -e ORACLE_PWD=admin -v c:/oracleExpress/data:/opt/oracle/oradata -v c:/oracleExpress/setup:/opt/oracle/scripts/setup -v c:/oracleExpress/startup:/opt/oracle/scripts/startup vegarringdal/oracledb-express-21.3.0:1.0.0`
 * next time you should be able to start with `docker start oracle_db`
+
+
+
+```bash
+# rad-server
+
+# http server
+SERVER_PORT         # default: 1080 - uses 1081 in dev mode, since its only API server
+SERVER_HOST         # default: 0.0.0.0
+SERVER_COMPRESSION  # default: true
+SERVER_API_ROOT     # default: /api - vitejs also uses this for proxy settings
+
+# express session
+SESSION_MAX_AGE     # default: 864000000
+SESSION_DOMAIN      # default: 0.0.0.0
+SESSION_PRIVATE_KEY # default: change_me
+SESSION_NAME        # default: session_name
+SESSION_HTTP_ONLY   # default: true
+SESSION_SAME_SITE   # default: true
+SESSION_SECURE      # default is set by esbuild - default true if not development
+
+# DEVELOPMENT ONLY
+PORT_API:           # default : 1081 - Will be used by application-server when it just a api server and vitejs
+PORT_WEB:           # default : 1080 - Will be used by vitejs dev server
+
+# FOR THIS rad-server
+CONSOLE_INFO                # default: false -> TODO: lets add some levels
+CONSOLE_SELECT              # default: false
+DB_FETCH_SIZE               # default: 150
+DB_PREFETCH_SIZE            # default: 150
+DB_POOL_MAX                 # default: 5
+DB_POOL_MIN                 # default: 2
+DB_POOL_PING_INTERVAL       # default: 60
+DB_POOL_TIMEOUT             # default: 120
+
+DB_CONNECTION_CLIENT_ID     # default: PUBLIC-USER
+DB_CONNECTION_CLIENT_INFO   # default: WWW.SAMPLE.COM
+DB_CONNECTION_MODULE        # default: WWW.SAMPLE.COM  -> sending host name would be useful..
+DB_CONNECTION_DB_OP         # default: WEB-UPDATE
+DB_CONNECTION_ACTION        # NOT IN USE -> SENDING REPORT NAME
+
+
+# Azure - https://login.microsoftonline.com/
+AZURE_CLIENT_ID             # default: UNKNOW ID
+AZURE_TENDANT_URI           # no default... Sample: https://login.microsoftonline.com/{TENDANTID}  (authority part of config)
+AZURE_SECRET                # default : UPER SECRET
+AZURE_SCOPES                # default : user.read  --> use comma to split
+ACTIVATE_AZURE_FAKE_SUCCESS # default false;
+AZURE_FAKE_ROLES: string[]  # no default, add with comma to split
+
+## access view, wil contain roles
+ACCESS_DB                   # default: DEFAULT
+ACCESS_VIEW                 # default: WEB_ACCESS_VIEW
+
+# Here we supply just names of connection
+# Use comma to split them
+DB_CONNECTIONS_NAMES_ARRAY  # default: DEFAULT
+
+# Environment variable names only!
+# Use comma to split them
+DB_USERNAME_ARRAY           # default: DEFAULT_DB_USERNAME
+DB_CONNECTION_STRING_ARRAY  # default: DEFAULT_DB_CONNECTION_STRING
+DB_PASSWORD_ARRAY           # default: DEFAULT_DB_PASSWORD
+
+
+####################################
+# Minimal usage with all defaults:
+####################################
+
+# usename and password
+DEFAULT_DB_USERNAME=DEFAULT_USER
+DEFAULT_DB_PASSWORD=PASSWORD
+DEFAULT_DB_CONNECTION_STRING=SOME.TNSNAME
+# default view/page
+DEFAULT_VIEW_DB_NAME=DEFAULT
+DEFAULT_VIEW_DB_SCHEMA=DEFAULT_USER
+DEFAULT_VIEW_DB_OBJECT=MY_REPORT_VIEW
+
+# if no TNS (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=xe)))
+# todo, add wallet sample..
+
+
+# azure hack for development (need restart if you edit)
+#ACTIVATE_AZURE_FAKE_SUCCESS=true
+#AZURE_FAKE_ROLES=WORKPREP_007900_READ,WORKPREP_007900_DELETE,WORKPREP_007900_INSERT,WORKPREP_007900_UPDATE
+
+# or azure for production
+AZURE_CLIENT_ID=ID
+AZURE_TENDANT_URI=https://login.microsoftonline.com/TENTANT_ID
+AZURE_SECRET=SECRET_STRING
+AZURE_SCOPES=user.read
+
+
+```
