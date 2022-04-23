@@ -104,6 +104,35 @@ One liner:
 * next time you should be able to start with `docker start oracle_db`
 
 
+next add `.env` to root
+
+```bash
+# db connections
+DEFAULT_DB_USERNAME=TESTDB
+DEFAULT_DB_PASSWORD=TESTDB
+DEFAULT_DB_CONNECTION_STRING=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=xe)))
+REDIS_URL=redis://localhost:6379
+
+# logs
+CONSOLE_SELECT=true
+#CONSOLE_INFO=true
+
+
+AZURE_CLIENT_ID=add_your_own_ID
+AZURE_TENDANT_URI=https://login.microsoftonline.com/add_your_tendantid
+AZURE_SECRET=add_your_secret
+AZURE_SCOPES=user.read
+
+# OR...
+
+# azure hack
+#ACTIVATE_AZURE_FAKE_SUCCESS=true
+#AZURE_FAKE_ROLES=ADMIN or USER
+
+```
+
+
+
 
 ```bash
 # rad-server
@@ -152,9 +181,6 @@ AZURE_SCOPES                # default : user.read  --> use comma to split
 ACTIVATE_AZURE_FAKE_SUCCESS # default false;
 AZURE_FAKE_ROLES: string[]  # no default, add with comma to split
 
-## access view, wil contain roles
-ACCESS_DB                   # default: DEFAULT
-ACCESS_VIEW                 # default: WEB_ACCESS_VIEW
 
 # Here we supply just names of connection
 # Use comma to split them
@@ -165,34 +191,6 @@ DB_CONNECTIONS_NAMES_ARRAY  # default: DEFAULT
 DB_USERNAME_ARRAY           # default: DEFAULT_DB_USERNAME
 DB_CONNECTION_STRING_ARRAY  # default: DEFAULT_DB_CONNECTION_STRING
 DB_PASSWORD_ARRAY           # default: DEFAULT_DB_PASSWORD
-
-
-####################################
-# Minimal usage with all defaults:
-####################################
-
-# usename and password
-DEFAULT_DB_USERNAME=DEFAULT_USER
-DEFAULT_DB_PASSWORD=PASSWORD
-DEFAULT_DB_CONNECTION_STRING=SOME.TNSNAME
-# default view/page
-DEFAULT_VIEW_DB_NAME=DEFAULT
-DEFAULT_VIEW_DB_SCHEMA=DEFAULT_USER
-DEFAULT_VIEW_DB_OBJECT=MY_REPORT_VIEW
-
-# if no TNS (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=xe)))
-# todo, add wallet sample..
-
-
-# azure hack for development (need restart if you edit)
-#ACTIVATE_AZURE_FAKE_SUCCESS=true
-#AZURE_FAKE_ROLES=WORKPREP_007900_READ,WORKPREP_007900_DELETE,WORKPREP_007900_INSERT,WORKPREP_007900_UPDATE
-
-# or azure for production
-AZURE_CLIENT_ID=ID
-AZURE_TENDANT_URI=https://login.microsoftonline.com/TENTANT_ID
-AZURE_SECRET=SECRET_STRING
-AZURE_SCOPES=user.read
 
 
 ```
