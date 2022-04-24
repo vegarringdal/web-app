@@ -32,6 +32,7 @@ Will use nodejs as web hosting/api server
 
 Will need redis as for session state, oracle for database (we use oracle at work...) and azure ad for userlogin (user only, access roles will be in database)
 
+Everyhting will be built for using updatable views with instead of update on oracle. Atm only limit Ive seen is not beeing able to use returning i inserts
 
 [repo](https://github.com/vegarringdal/web-rad-backend)
 
