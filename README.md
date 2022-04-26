@@ -1,26 +1,25 @@
 # web-rad
 
-Experiment for web application using mulitirepo to try and share parts between applications. Will work more like a template instead of npm modules you use.
+Experiment for web application using mulitirepo to try and share parts between applications. Will work more like a
+template instead of npm modules you use.
 
 When you build it, you get 1 docker image/pod for backend and frontend (database oracle/redis not part of image)
 
-
-Im not 100% sure how this will end🤪 and might just blow up 💣 before I managed to make anything useful 🤣 
+Im not 100% sure how this will end🤪 and might just blow up 💣 before I managed to make anything useful 🤣
 
 Will be very messy in the begining, since I will pull inn existing projects/experiments to save time/reuse.
-
 
 ## web-rad
 
 Will be root of application, you will only edit name/url to repos.
 
 TODO: make list of edits needed for new project
-- package.json repo urls/name/dockerimage, versionrc.json url
+
+-   package.json repo urls/name/dockerimage, versionrc.json url
 
 This will pull inn all other repos
 
 [repo](https://github.com/vegarringdal/web-rad)
-
 
 ## web-rad-backend
 
@@ -30,9 +29,11 @@ Server hosting web page and database api
 
 Will use nodejs as web hosting/api server
 
-Will need redis as for session state, oracle for database (we use oracle at work...) and azure ad for userlogin (user only, access roles will be in database)
+Willoracle for database (we use oracle at work...) and azure ad for userlogin (user only, access roles will be in
+database)
 
-Everyhting will be built for using updatable views with instead of update on oracle. Atm only limit Ive seen is not beeing able to use returning i inserts
+Everyhting will be built for using updatable views with instead of update on oracle. Atm only limit Ive seen is not
+beeing able to use returning i inserts
 
 [repo](https://github.com/vegarringdal/web-rad-backend)
 
@@ -40,10 +41,9 @@ Everyhting will be built for using updatable views with instead of update on ora
 
 This will not be something you edit, just fork
 
-Will be common code for config, and if any utils need to be shared between frontend and backend. 
+Will be common code for config, and if any utils need to be shared between frontend and backend.
 
 This will need to be selfcontained/no external libs
-
 
 [repo](https://github.com/vegarringdal/web-rad-common)
 
@@ -67,52 +67,45 @@ Will be react application
 
 [repo](https://github.com/vegarringdal/web-rad-frontend)
 
-
-
 # How to get started (with this app)
 
-- `git clone https://github.com/vegarringdal/web-rad`
-- open workspace file.
-- `npm install`
-- `npm run gitclone`
-- `npm install` (so sub repo gets all installed..)
-- start redis `docker run -p 6379:6379 -d redis`
-- start oracle express
-    - create folder called `oracleExpress` on c disk
-    - create folder called `setup` & `startup`
-    - add this file `user_testdb.sql` under `setup` with content          
-            
-            alter session set "_ORACLE_SCRIPT"=true;
+-   `git clone https://github.com/vegarringdal/web-rad`
+-   open workspace file.
+-   `npm install`
+-   `npm run gitclone`
+-   `npm install` (so sub repo gets all installed..)
 
-            CREATE USER TESTDB
-            IDENTIFIED by TESTDB
-            QUOTA UNLIMITED ON users;
-            
-            GRANT ALL PRIVILEGES TO TESTDB;
-    - Then run:
-            
-            docker run
-                --name oracle_db
-                -p 1522:1521
-                -e ORACLE_PWD=admin
-                -v c:/oracleExpress/data:/opt/oracle/oradata
-                -v c:/oracleExpress/setup:/opt/oracle/scripts/setup
-                -v c:/oracleExpress/startup:/opt/oracle/scripts/startup
-                vegarringdal/oracledb-express-21.3.0:1.0.0
+-   start oracle express
+
+    -   create folder called `oracleExpress` on c disk
+    -   create folder called `setup` & `startup`
+    -   add this file `user_testdb.sql` under `setup` with content
+
+              alter session set "_ORACLE_SCRIPT"=true;
+
+              CREATE USER TESTDB
+              IDENTIFIED by TESTDB
+              QUOTA UNLIMITED ON users;
+
+              GRANT ALL PRIVILEGES TO TESTDB;
+
+    -   Then run: docker run --name oracle_db -p 1522:1521 -e ORACLE_PWD=admin -v
+        c:/oracleExpress/data:/opt/oracle/oradata -v c:/oracleExpress/setup:/opt/oracle/scripts/setup -v
+        c:/oracleExpress/startup:/opt/oracle/scripts/startup vegarringdal/oracledb-express-21.3.0:1.0.0
 
 One liner:
-* `docker run --name oracle_db -p 1522:1521 -e ORACLE_PWD=admin -v c:/oracleExpress/data:/opt/oracle/oradata -v c:/oracleExpress/setup:/opt/oracle/scripts/setup -v c:/oracleExpress/startup:/opt/oracle/scripts/startup vegarringdal/oracledb-express-21.3.0:1.0.0`
-* next time you should be able to start with `docker start oracle_db`
 
+-   `docker run --name oracle_db -p 1522:1521 -e ORACLE_PWD=admin -v c:/oracleExpress/data:/opt/oracle/oradata -v c:/oracleExpress/setup:/opt/oracle/scripts/setup -v c:/oracleExpress/startup:/opt/oracle/scripts/startup vegarringdal/oracledb-express-21.3.0:1.0.0`
+-   next time you should be able to start with `docker start oracle_db`
 
 next add `.env` to root
 
 ```bash
 # db connections
 AZURE_CLIENT_ID=add_your_own_ID
-AZURE_TENDANT_URI=https://login.microsoftonline.com/add_your_tendantid
-AZURE_SECRET=add_your_secret
-AZURE_SCOPES=user.read
+AZURE_TENDANT_ID=add_your_tendantid
+# do not use graph scope, we will not be able to verify it
+AZURE_SCOPES=api://571a40a6-9b3c-481d-9fd2-1471b761f284/some api you have
 
 # OR...
 
@@ -121,9 +114,6 @@ AZURE_SCOPES=user.read
 #AZURE_FAKE_ROLES=ADMIN or USER
 
 ```
-
-
-
 
 ```bash
 # rad-server
@@ -167,13 +157,13 @@ DB_CONNECTION_ACTION        # NOT IN USE -> SENDING REPORT NAME
 DB_USERNAME                 # default TESTDB
 DB_PASSWORD                 # default TESTDB
 DB_CONNECTION_STRING        # default (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=xe)))
-REDIS_URL                   # default redis://localhost:6379
+
 
 # Azure - https://login.microsoftonline.com/
 AZURE_CLIENT_ID             # default: UNKNOW ID
-AZURE_TENDANT_URI           # no default... Sample: https://login.microsoftonline.com/{TENDANTID}  (authority part of config)
-AZURE_SECRET                # default : UPER SECRET
+AZURE_TENDANT_ID            # default: UNKNOW ID
 AZURE_SCOPES                # default : user.read  --> use comma to split
+
 ACTIVATE_AZURE_FAKE_SUCCESS # default false;
 AZURE_FAKE_ROLES: string[]  # no default, add with comma to split
 
