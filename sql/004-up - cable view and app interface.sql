@@ -34,7 +34,6 @@ BEGIN
     IF UPDATING THEN
         UPDATE T_CABLETYPE
         SET
-            ID = :NEW.ID,
             CTYPE = :NEW.CTYPE,
             DIM = :NEW.DIM,
             CREATED = :NEW.CREATED,

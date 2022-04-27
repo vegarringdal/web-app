@@ -54,7 +54,6 @@ BEGIN
     IF UPDATING THEN
         UPDATE T_DRUM
         SET
-            ID = :NEW.ID,
             TNAME = :NEW.TNAME,
             CABLETYPE_ID = :NEW.CABLETYPE_ID,
             DRUM_RECIVED = :NEW.DRUM_RECIVED,
