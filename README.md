@@ -113,6 +113,10 @@ AZURE_SCOPES=api://571a40a6-9b3c-481d-9fd2-1471b761f284/some api you have
 #ACTIVATE_AZURE_FAKE_SUCCESS=true
 #AZURE_FAKE_ROLES=ADMIN or USER
 
+# logs (console logs out useful dev info)
+CONSOLE_SELECT=true
+CONSOLE_INFO=true
+
 ```
 
 ```bash
