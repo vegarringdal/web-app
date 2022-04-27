@@ -65,6 +65,24 @@ BEGIN
     END IF;
 
 END;
+
+CREATE TRIGGER tr_web_user_audit BEFORE
+    INSERT OR UPDATE ON t_web_user
+    FOR EACH ROW
+BEGIN
+    IF inserting THEN
+        :new.created_by := f_get_current_user();
+        :new.modified_by := f_get_current_user();
+    END IF;
+
+    IF updating THEN
+        :new.modified_by := f_get_current_user();
+        :new.modified := sysdate;
+    END IF;
+
+END;
+
+
 --
 /
 --

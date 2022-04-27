@@ -15,7 +15,7 @@ BEGIN
 -- INSERTING
     IF INSERTING THEN
         INSERT INTO T_DRUM (
-            ID,
+
             TNAME,
             CABLETYPE_ID,
             DRUM_RECIVED,
@@ -25,13 +25,10 @@ BEGIN
             COMMENT_FOREMAN,
             COMMENT_STORAGE,
             LOCATION,
-            LOCATION_COMMENT,
-            CREATED,
-            CREATED_BY,
-            MODIFIED,
-            MODIFIED_BY
+            LOCATION_COMMENT
+
         ) VALUES (
-            :NEW.ID,
+
             :NEW.TNAME,
             :NEW.CABLETYPE_ID,
             :NEW.DRUM_RECIVED,
@@ -41,11 +38,8 @@ BEGIN
             :NEW.COMMENT_FOREMAN,
             :NEW.COMMENT_STORAGE,
             :NEW.LOCATION,
-            :NEW.LOCATION_COMMENT,
-            :NEW.CREATED,
-            :NEW.CREATED_BY,
-            :NEW.MODIFIED,
-            :NEW.MODIFIED_BY
+            :NEW.LOCATION_COMMENT
+      
         );
 
     END IF;
@@ -63,11 +57,8 @@ BEGIN
             COMMENT_FOREMAN = :NEW.COMMENT_FOREMAN,
             COMMENT_STORAGE = :NEW.COMMENT_STORAGE,
             LOCATION = :NEW.LOCATION,
-            LOCATION_COMMENT = :NEW.LOCATION_COMMENT,
-            CREATED = :NEW.CREATED,
-            CREATED_BY = :NEW.CREATED_BY,
-            MODIFIED = :NEW.MODIFIED,
-            MODIFIED_BY = :NEW.MODIFIED_BY
+            LOCATION_COMMENT = :NEW.LOCATION_COMMENT
+
         WHERE
             ID = :OLD.ID;
 

@@ -11,21 +11,15 @@ BEGIN
 -- INSERTING
     IF INSERTING THEN
         INSERT INTO T_CABLETYPE (
-            ID,
+
             CTYPE,
-            DIM,
-            CREATED,
-            CREATED_BY,
-            MODIFIED,
-            MODIFIED_BY
+            DIM
+    
         ) VALUES (
-            :NEW.ID,
+
             :NEW.CTYPE,
-            :NEW.DIM,
-            :NEW.CREATED,
-            :NEW.CREATED_BY,
-            :NEW.MODIFIED,
-            :NEW.MODIFIED_BY
+            :NEW.DIM
+        
         );
 
     END IF;
@@ -35,11 +29,8 @@ BEGIN
         UPDATE T_CABLETYPE
         SET
             CTYPE = :NEW.CTYPE,
-            DIM = :NEW.DIM,
-            CREATED = :NEW.CREATED,
-            CREATED_BY = :NEW.CREATED_BY,
-            MODIFIED = :NEW.MODIFIED,
-            MODIFIED_BY = :NEW.MODIFIED_BY
+            DIM = :NEW.DIM
+        
         WHERE
             ID = :OLD.ID;
 
