@@ -1,56 +1,56 @@
-CREATE VIEW V_CABLE AS SELECT * FROM T_CABLETYPE;
+CREATE VIEW AI_CABLE AS SELECT * FROM T_CABLETYPE;
 
 --
 /
 --
 
-CREATE OR REPLACE TRIGGER trg_ai_cable INSTEAD OF
-    INSERT OR UPDATE OR DELETE ON v_cable
+CREATE OR REPLACE TRIGGER TRG_AI_CABLE INSTEAD OF
+    INSERT OR UPDATE OR DELETE ON AI_CABLE
     FOR EACH ROW
 BEGIN
 -- INSERTING
-    IF inserting THEN
-        INSERT INTO t_cabletype (
-            id,
-            ctype,
-            dim,
-            created,
-            created_by,
-            modified,
-            modified_by
+    IF INSERTING THEN
+        INSERT INTO T_CABLETYPE (
+            ID,
+            CTYPE,
+            DIM,
+            CREATED,
+            CREATED_BY,
+            MODIFIED,
+            MODIFIED_BY
         ) VALUES (
-            :new.id,
-            :new.ctype,
-            :new.dim,
-            :new.created,
-            :new.created_by,
-            :new.modified,
-            :new.modified_by
+            :NEW.ID,
+            :NEW.CTYPE,
+            :NEW.DIM,
+            :NEW.CREATED,
+            :NEW.CREATED_BY,
+            :NEW.MODIFIED,
+            :NEW.MODIFIED_BY
         );
 
     END IF;
 
     -- UPDATING
-    IF updating THEN
-        UPDATE t_cabletype
+    IF UPDATING THEN
+        UPDATE T_CABLETYPE
         SET
-            id = :new.id,
-            ctype = :new.ctype,
-            dim = :new.dim,
-            created = :new.created,
-            created_by = :new.created_by,
-            modified = :new.modified,
-            modified_by = :new.modified_by
+            ID = :NEW.ID,
+            CTYPE = :NEW.CTYPE,
+            DIM = :NEW.DIM,
+            CREATED = :NEW.CREATED,
+            CREATED_BY = :NEW.CREATED_BY,
+            MODIFIED = :NEW.MODIFIED,
+            MODIFIED_BY = :NEW.MODIFIED_BY
         WHERE
-            id = :old.id;
+            ID = :OLD.ID;
 
     END IF;
     
     -- DELETING
-    IF deleting THEN
-        DELETE FROM t_cabletype
+    IF DELETING THEN
+        DELETE FROM T_CABLETYPE
         WHERE
-            id = :old.id;
+            ID = :OLD.ID;
 
     END IF;
 END;
