@@ -29,11 +29,11 @@ Server hosting web page and database api
 
 Will use nodejs as web hosting/api server
 
-Willoracle for database (we use oracle at work...) and azure ad for userlogin (user only, access roles will be in
+Will use oracle for database (we use oracle at work...) and azure ad for userlogin (user only + 2 default admins, access roles will be in
 database)
 
 Everyhting will be built for using updatable views with instead of update on oracle. Atm only limit Ive seen is not
-beeing able to use returning i inserts
+beeing able to use returning in inserts
 
 [repo](https://github.com/vegarringdal/web-rad-backend)
 
