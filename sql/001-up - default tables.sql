@@ -10,14 +10,10 @@
 --
 /
 --
-CREATE
-OR REPLACE FUNCTION F_GET_CURRENT_USER RETURN VARCHAR IS BEGIN -- IF WEB CLIENT ID WILL HAVE USER
+CREATE OR REPLACE FUNCTION f_get_current_user RETURN VARCHAR IS
+BEGIN -- IF WEB CLIENT ID WILL HAVE USER
 -- IF NOT WEB OR ANYTHING ELSE WE USE OS_USER
-RETURN NVL(
-    SYS_CONTEXT('USERENV', 'CLIENT_IDENTIFIER'),
-    SYS_CONTEXT('USERENV', 'OS_USER')
-);
-
+    RETURN nvl(sys_context('USERENV', 'CLIENT_IDENTIFIER'), sys_context('USERENV', 'OS_USER'));
 END;
 
 --
@@ -35,21 +31,19 @@ CREATE TABLE T_WEB_USER (
     MODIFIED_BY VARCHAR2(100)
 );
 
-CREATE TRIGGER TR_WEB_USER_AUDIT BEFORE
-INSERT
-    OR
-UPDATE
-    ON T_WEB_USER FOR EACH ROW BEGIN IF INSERTING THEN :NEW.CREATED_BY := F_GET_CURRENT_USER();
+CREATE TRIGGER tr_web_user_audit BEFORE
+    INSERT OR UPDATE ON t_web_user
+    FOR EACH ROW
+BEGIN
+    IF inserting THEN
+        :new.created_by := f_get_current_user();
+        :new.modified_by := f_get_current_user();
+    END IF;
 
-:NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-END IF;
-
-IF UPDATING THEN :NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-:NEW.MODIFIED := SYSDATE;
-
-END IF;
+    IF updating THEN
+        :new.modified_by := f_get_current_user();
+        :new.modified := sysdate;
+    END IF;
 
 END;
 
@@ -66,21 +60,19 @@ CREATE TABLE T_WEB_ROLE (
     MODIFIED_BY VARCHAR2(100)
 );
 
-CREATE TRIGGER TR_WEB_ROLE_AUDIT BEFORE
-INSERT
-    OR
-UPDATE
-    ON T_WEB_ROLE FOR EACH ROW BEGIN IF INSERTING THEN :NEW.CREATED_BY := F_GET_CURRENT_USER();
+CREATE TRIGGER tr_web_role_audit BEFORE
+    INSERT OR UPDATE ON t_web_role
+    FOR EACH ROW
+BEGIN
+    IF inserting THEN
+        :new.created_by := f_get_current_user();
+        :new.modified_by := f_get_current_user();
+    END IF;
 
-:NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-END IF;
-
-IF UPDATING THEN :NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-:NEW.MODIFIED := SYSDATE;
-
-END IF;
+    IF updating THEN
+        :new.modified_by := f_get_current_user();
+        :new.modified := sysdate;
+    END IF;
 
 END;
 
@@ -97,21 +89,19 @@ CREATE TABLE T_WEB_USER_ROLE (
     MODIFIED_BY VARCHAR2(100)
 );
 
-CREATE TRIGGER TR_WEB_USER_ROLE_AUDIT BEFORE
-INSERT
-    OR
-UPDATE
-    ON T_WEB_USER_ROLE FOR EACH ROW BEGIN IF INSERTING THEN :NEW.CREATED_BY := F_GET_CURRENT_USER();
+CREATE TRIGGER tr_web_user_role_audit BEFORE
+    INSERT OR UPDATE ON t_web_user_role
+    FOR EACH ROW
+BEGIN
+    IF inserting THEN
+        :new.created_by := f_get_current_user();
+        :new.modified_by := f_get_current_user();
+    END IF;
 
-:NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-END IF;
-
-IF UPDATING THEN :NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-:NEW.MODIFIED := SYSDATE;
-
-END IF;
+    IF updating THEN
+        :new.modified_by := f_get_current_user();
+        :new.modified := sysdate;
+    END IF;
 
 END;
 
@@ -130,21 +120,19 @@ CREATE TABLE T_WEB_REST_API (
     CONSTRAINT WEB_REST_API_VALID_JSON_CHECK CHECK (DATA IS JSON (STRICT)) ENABLE
 );
 
-CREATE TRIGGER TR_WEB_REST_API_AUDIT BEFORE
-INSERT
-    OR
-UPDATE
-    ON T_WEB_REST_API FOR EACH ROW BEGIN IF INSERTING THEN :NEW.CREATED_BY := F_GET_CURRENT_USER();
+CREATE TRIGGER tr_web_rest_api_audit BEFORE
+    INSERT OR UPDATE ON t_web_rest_api
+    FOR EACH ROW
+BEGIN
+    IF inserting THEN
+        :new.created_by := f_get_current_user();
+        :new.modified_by := f_get_current_user();
+    END IF;
 
-:NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-END IF;
-
-IF UPDATING THEN :NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-:NEW.MODIFIED := SYSDATE;
-
-END IF;
+    IF updating THEN
+        :new.modified_by := f_get_current_user();
+        :new.modified := sysdate;
+    END IF;
 
 END;
 
@@ -163,183 +151,162 @@ CREATE TABLE T_WEB_GRID_CONFIG (
     CONSTRAINT WEB_GRID_CONFIG_VALID_JSON_CHECK CHECK (DATA IS JSON (STRICT)) ENABLE
 );
 
-CREATE TRIGGER TR_WEB_GRID_CONFIG_AUDIT BEFORE
-INSERT
-    OR
-UPDATE
-    ON T_WEB_GRID_CONFIG FOR EACH ROW BEGIN IF INSERTING THEN :NEW.CREATED_BY := F_GET_CURRENT_USER();
+CREATE TRIGGER tr_web_grid_config_audit BEFORE
+    INSERT OR UPDATE ON t_web_grid_config
+    FOR EACH ROW
+BEGIN
+    IF inserting THEN
+        :new.created_by := f_get_current_user();
+        :new.modified_by := f_get_current_user();
+    END IF;
 
-:NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-END IF;
-
-IF UPDATING THEN :NEW.MODIFIED_BY := F_GET_CURRENT_USER();
-
-:NEW.MODIFIED := SYSDATE;
-
-END IF;
+    IF updating THEN
+        :new.modified_by := f_get_current_user();
+        :new.modified := sysdate;
+    END IF;
 
 END;
 
 --
 /
 --
-CREATE VIEW AI_WEB_USER AS
-SELECT
-    *
-FROM
-    T_WEB_USER;
+CREATE VIEW ai_web_user AS
+    SELECT
+        *
+    FROM
+        t_web_user;
 
-CREATE
-OR REPLACE TRIGGER TR_AI_WEB_USER INSTEAD OF
-INSERT
-    OR
-UPDATE
-    OR DELETE ON AI_WEB_USER FOR EACH ROW BEGIN -- INSERTING
-    IF INSERTING THEN
-INSERT INTO
-    T_WEB_USER (
-        FIRSTNAME,
-        LASTNAME,
-        USERNAME
-    )
-VALUES
-    (
-        :NEW.FIRSTNAME,
-        :NEW.LASTNAME,
-        :NEW.USERNAME
-    );
+CREATE OR REPLACE TRIGGER tr_ai_web_user INSTEAD OF
+    INSERT OR UPDATE OR DELETE ON ai_web_user
+    FOR EACH ROW
+BEGIN -- INSERTING
+    IF inserting THEN
+        INSERT INTO t_web_user (
+            firstname,
+            lastname,
+            username
+        ) VALUES (
+            :new.firstname,
+            :new.lastname,
+            :new.username
+        );
 
-END IF;
+    END IF;
 
 -- UPDATING
-IF UPDATING THEN
-UPDATE
-    T_WEB_USER
-SET
-    FIRSTNAME = :NEW.FIRSTNAME,
-    LASTNAME = :NEW.LASTNAME,
-    USERNAME = :NEW.USERNAME
-WHERE
-    ID = :OLD.ID;
+    IF updating THEN
+        UPDATE t_web_user
+        SET
+            firstname = :new.firstname,
+            lastname = :new.lastname,
+            username = :new.username
+        WHERE
+            id = :old.id;
 
-END IF;
+    END IF;
 
 -- DELETING
-IF DELETING THEN
-DELETE FROM
-    T_WEB_USER
-WHERE
-    ID = :OLD.ID;
+    IF deleting THEN
+        DELETE FROM t_web_user
+        WHERE
+            id = :old.id;
 
-END IF;
-
+    END IF;
 END;
 
 --
 /
 --
-CREATE VIEW AI_WEB_ROLE AS
-SELECT
-    *
-FROM
-    T_WEB_ROLE;
+CREATE VIEW ai_web_role AS
+    SELECT
+        *
+    FROM
+        t_web_role;
 
-CREATE
-OR REPLACE TRIGGER TR_AI_WEB_ROLE INSTEAD OF
-INSERT
-    OR
-UPDATE
-    OR DELETE ON AI_WEB_ROLE FOR EACH ROW BEGIN -- INSERTING
-    IF INSERTING THEN
-INSERT INTO
-    T_WEB_ROLE (
-        NAME,
-        DESCRIPTION
-    )
-VALUES
-    (
-        :NEW.NAME,
-        :NEW.DESCRIPTION
-    );
+CREATE OR REPLACE TRIGGER tr_ai_web_role INSTEAD OF
+    INSERT OR UPDATE OR DELETE ON ai_web_role
+    FOR EACH ROW
+BEGIN -- INSERTING
+    IF inserting THEN
+        INSERT INTO t_web_role (
+            name,
+            description
+        ) VALUES (
+            :new.name,
+            :new.description
+        );
 
-END IF;
+    END IF;
 
 -- UPDATING
-IF UPDATING THEN
-UPDATE
-    T_WEB_ROLE
-SET
-    NAME = :NEW.NAME,
-    DESCRIPTION = :NEW.DESCRIPTION
-WHERE
-    ID = :OLD.ID;
+    IF updating THEN
+        UPDATE t_web_role
+        SET
+            name = :new.name,
+            description = :new.description
+        WHERE
+            id = :old.id;
 
-END IF;
+    END IF;
 
 -- DELETING
-IF DELETING THEN
-DELETE FROM
-    T_WEB_ROLE
-WHERE
-    ID = :OLD.ID;
+    IF deleting THEN
+        DELETE FROM t_web_role
+        WHERE
+            id = :old.id;
 
-END IF;
-
+    END IF;
 END;
 
 --
 /
 --
-CREATE VIEW AI_WEB_USER_ROLE AS
-SELECT
-    A.ID,
-    A.WEB_ROLE_ID,
-    A.WEB_USER_ID,
-    B.NAME,
-    C.USERNAME
-FROM
-    T_WEB_USER_ROLE A
-    LEFT JOIN T_WEB_ROLE B ON B.ID = A.WEB_ROLE_ID
-    LEFT JOIN T_WEB_USER C ON C.ID = A.WEB_USER_ID;
+CREATE VIEW ai_web_user_role AS
+    SELECT
+        a.id,
+        a.web_role_id,
+        a.web_user_id,
+        b.name,
+        c.username
+    FROM
+        t_web_user_role a
+        LEFT JOIN t_web_role      b ON b.id = a.web_role_id
+        LEFT JOIN t_web_user      c ON c.id = a.web_user_id;
 
-CREATE
-OR REPLACE TRIGGER TR_AI_WEB_USER_ROLE INSTEAD OF
-INSERT
-    OR
-UPDATE
-    OR DELETE ON AI_WEB_USER_ROLE FOR EACH ROW BEGIN -- INSERTING
-IF inserting THEN
-    INSERT INTO t_web_user_role (
-        web_user_id,
-        web_role_id
-    ) VALUES (
-        :new.web_user_id,
-        :new.web_role_id
-    );
+CREATE OR REPLACE TRIGGER tr_ai_web_user_role INSTEAD OF
+    INSERT OR UPDATE OR DELETE ON ai_web_user_role
+    FOR EACH ROW
+BEGIN -- INSERTING
+    IF inserting THEN
+        INSERT INTO t_web_user_role (
+            web_user_id,
+            web_role_id
+        ) VALUES (
+            :new.web_user_id,
+            :new.web_role_id
+        );
 
-END IF;
+    END IF;
 
 -- UPDATING
-IF updating THEN
-    UPDATE t_web_user_role
-    SET
-        web_user_id = :new.web_user_id,
-        web_role_id = :new.web_role_id
-    WHERE
-        id = :old.id;
+    IF updating THEN
+        UPDATE t_web_user_role
+        SET
+            web_user_id = :new.web_user_id,
+            web_role_id = :new.web_role_id
+        WHERE
+            id = :old.id;
 
-END IF;
+    END IF;
 
 -- DELETING
-IF deleting THEN
-    DELETE FROM t_web_user_role
-    WHERE
-        id = :old.id;
+    IF deleting THEN
+        DELETE FROM t_web_user_role
+        WHERE
+            id = :old.id;
 
-END IF;
-
-end;
+    END IF;
+END;
 --
 /
 --

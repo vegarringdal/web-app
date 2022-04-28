@@ -1,5 +1,24 @@
-
-CREATE VIEW AI_DRUM AS SELECT * FROM T_DRUM;
+create or replace view ai_drum as
+select 
+    a.id,
+    a.tname,
+    a.cabletype_id,
+    b.ctype || ' - ' || b.dim cabletype,
+    a.drum_recived,
+    a.length_recived,
+    a.length_lost,
+    a.use_metermarking,
+    a.comment_foreman,
+    a.comment_storage,
+    a.location,
+    a.location_comment,
+    a.created,
+    a.created_by,
+    a.modified,
+    a.modified_by
+FROM
+    T_drum a
+    left join t_cabletype b on b.id = a.cabletype_id;
 
 
 --

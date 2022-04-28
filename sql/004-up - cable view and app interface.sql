@@ -1,4 +1,15 @@
-CREATE VIEW AI_CABLE AS SELECT * FROM T_CABLETYPE;
+CREATE or replace view ai_cable AS
+    SELECT
+        id,
+        ctype,
+        dim,
+        ctype || ' - ' || dim cabletype,
+        created,
+        created_by,
+        modified,
+        modified_by
+    FROM
+        t_cabletype;
 
 --
 /

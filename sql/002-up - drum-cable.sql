@@ -82,11 +82,6 @@ BEGIN
 
 END;
 
-
---
-/
---
-SET SERVEROUTPUT ON;
 --
 /
 --
@@ -112,7 +107,6 @@ BEGIN
     FOR C IN 1..10000 LOOP
         INSERT INTO T_DRUM (
             TNAME,
-            CABLETYPE_ID,
             LENGTH_RECIVED
         ) VALUES (
             'T-' || TO_CHAR(1000 + C),
@@ -126,7 +120,7 @@ END;
 /
 --
 
-SET SERVEROUTPUT ON;
+--SET SERVEROUTPUT ON;
 
 --BEGIN
 --    FOR V_COUNTER IN 1..100
