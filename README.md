@@ -107,12 +107,6 @@ AZURE_TENDANT_ID=add_your_tendantid
 # do not use graph scope, we will not be able to verify it
 AZURE_SCOPES=api://571a40a6-9b3c-481d-9fd2-1471b761f284/some api you have
 
-# OR...
-
-# azure hack
-#ACTIVATE_AZURE_FAKE_SUCCESS=true
-#AZURE_FAKE_ROLES=ADMIN or USER
-
 # logs (console logs out useful dev info)
 CONSOLE_SELECT=true
 CONSOLE_INFO=true
@@ -127,15 +121,6 @@ SERVER_PORT         # default: 1080 - uses 1081 in dev mode, since its only API 
 SERVER_HOST         # default: 0.0.0.0
 SERVER_COMPRESSION  # default: true
 SERVER_API_ROOT     # default: /api - vitejs also uses this for proxy settings
-
-# express session
-SESSION_MAX_AGE     # default: 864000000
-SESSION_DOMAIN      # default: 0.0.0.0
-SESSION_PRIVATE_KEY # default: change_me
-SESSION_NAME        # default: session_name
-SESSION_HTTP_ONLY   # default: true
-SESSION_SAME_SITE   # default: true
-SESSION_SECURE      # default is set by esbuild - default true if not development
 
 # DEVELOPMENT ONLY
 PORT_API:           # default : 1081 - Will be used by application-server when it just a api server and vitejs
