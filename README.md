@@ -9,6 +9,8 @@ Im not 100% sure how this will end🤪 and might just blow up 💣 before I mana
 
 Will be very messy in the begining, since I will pull inn existing projects/experiments to save time/reuse.
 
+It will also have a lot of commits as I try and built something I want to use, so I will be changing my mind as I find out what works and dont
+
 ## web-rad
 
 Will be root of application, you will only edit name/url to repos.
