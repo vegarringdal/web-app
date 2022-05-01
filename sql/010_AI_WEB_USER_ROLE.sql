@@ -4,7 +4,11 @@ CREATE OR REPLACE VIEW AI_WEB_USER_ROLE AS
         A.WEB_ROLE_ID,
         A.WEB_USER_ID,
         B.NAME,
-        C.USERNAME
+        C.USERNAME,
+        A.CREATED,
+        A.CREATED_BY,
+        A.MODIFIED,
+        A.MODIFIED_BY
     FROM
         T_WEB_USER_ROLE A
         LEFT JOIN T_WEB_ROLE      B ON B.ID = A.WEB_ROLE_ID
