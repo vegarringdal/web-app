@@ -1,0 +1,41 @@
+CREATE OR REPLACE VIEW AI_WEB_ROLE AS
+    SELECT
+        *
+    FROM
+        T_WEB_ROLE;
+
+CREATE OR REPLACE TRIGGER TR_AI_WEB_ROLE INSTEAD OF
+    INSERT OR UPDATE OR DELETE ON AI_WEB_ROLE
+    FOR EACH ROW
+BEGIN 
+    -- INSERTING
+    IF INSERTING THEN
+        INSERT INTO T_WEB_ROLE (
+            NAME,
+            DESCRIPTION
+        ) VALUES (
+            :NEW.NAME,
+            :NEW.DESCRIPTION
+        );
+
+    END IF;
+
+    -- UPDATING
+    IF UPDATING THEN
+        UPDATE T_WEB_ROLE
+        SET
+            NAME = :NEW.NAME,
+            DESCRIPTION = :NEW.DESCRIPTION
+        WHERE
+            ID = :OLD.ID;
+
+    END IF;
+
+    -- DELETING
+    IF DELETING THEN
+        DELETE FROM T_WEB_ROLE
+        WHERE
+            ID = :OLD.ID;
+
+    END IF;
+END;

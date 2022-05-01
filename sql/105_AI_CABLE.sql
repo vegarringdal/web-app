@@ -1,25 +1,23 @@
-CREATE or replace view ai_cable AS
+CREATE OR REPLACE VIEW AI_CABLE AS
     SELECT
-        id,
-        ctype,
-        dim,
-        ctype || ' - ' || dim cabletype,
-        created,
-        created_by,
-        modified,
-        modified_by
+        ID,
+        CTYPE,
+        DIM,
+        CTYPE || ' - ' || DIM CABLETYPE,
+        CREATED,
+        CREATED_BY,
+        MODIFIED,
+        MODIFIED_BY
     FROM
-        t_cabletype;
+        T_CABLETYPE;
 
---
-/
---
+
 
 CREATE OR REPLACE TRIGGER TRG_AI_CABLE INSTEAD OF
     INSERT OR UPDATE OR DELETE ON AI_CABLE
     FOR EACH ROW
 BEGIN
--- INSERTING
+    -- INSERTING
     IF INSERTING THEN
         INSERT INTO T_CABLETYPE (
 

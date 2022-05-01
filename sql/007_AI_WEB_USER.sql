@@ -1,0 +1,43 @@
+CREATE OR REPLACE VIEW AI_WEB_USER AS
+    SELECT
+        *
+    FROM
+        T_WEB_USER;
+
+CREATE OR REPLACE TRIGGER TR_AI_WEB_USER INSTEAD OF
+    INSERT OR UPDATE OR DELETE ON AI_WEB_USER
+    FOR EACH ROW
+BEGIN -- INSERTING
+    IF INSERTING THEN
+        INSERT INTO T_WEB_USER (
+            FIRSTNAME,
+            LASTNAME,
+            USERNAME
+        ) VALUES (
+            :NEW.FIRSTNAME,
+            :NEW.LASTNAME,
+            :NEW.USERNAME
+        );
+
+    END IF;
+
+-- UPDATING
+    IF UPDATING THEN
+        UPDATE T_WEB_USER
+        SET
+            FIRSTNAME = :NEW.FIRSTNAME,
+            LASTNAME = :NEW.LASTNAME,
+            USERNAME = :NEW.USERNAME
+        WHERE
+            ID = :OLD.ID;
+
+    END IF;
+
+-- DELETING
+    IF DELETING THEN
+        DELETE FROM T_WEB_USER
+        WHERE
+            ID = :OLD.ID;
+
+    END IF;
+END;

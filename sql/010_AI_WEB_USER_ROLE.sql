@@ -1,0 +1,47 @@
+CREATE OR REPLACE VIEW AI_WEB_USER_ROLE AS
+    SELECT
+        A.ID,
+        A.WEB_ROLE_ID,
+        A.WEB_USER_ID,
+        B.NAME,
+        C.USERNAME
+    FROM
+        T_WEB_USER_ROLE A
+        LEFT JOIN T_WEB_ROLE      B ON B.ID = A.WEB_ROLE_ID
+        LEFT JOIN T_WEB_USER      C ON C.ID = A.WEB_USER_ID;
+
+CREATE OR REPLACE TRIGGER TR_AI_WEB_USER_ROLE INSTEAD OF
+    INSERT OR UPDATE OR DELETE ON AI_WEB_USER_ROLE
+    FOR EACH ROW
+BEGIN 
+    -- INSERTING
+    IF INSERTING THEN
+        INSERT INTO T_WEB_USER_ROLE (
+            WEB_USER_ID,
+            WEB_ROLE_ID
+        ) VALUES (
+            :NEW.WEB_USER_ID,
+            :NEW.WEB_ROLE_ID
+        );
+
+    END IF;
+
+    -- UPDATING
+    IF UPDATING THEN
+        UPDATE T_WEB_USER_ROLE
+        SET
+            WEB_USER_ID = :NEW.WEB_USER_ID,
+            WEB_ROLE_ID = :NEW.WEB_ROLE_ID
+        WHERE
+            ID = :OLD.ID;
+
+    END IF;
+
+    -- DELETING
+    IF DELETING THEN
+        DELETE FROM T_WEB_USER_ROLE
+        WHERE
+            ID = :OLD.ID;
+
+    END IF;
+END;
