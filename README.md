@@ -140,7 +140,7 @@ DB_CONNECTION_CLIENT_ID     # default: PUBLIC-USER
 DB_CONNECTION_CLIENT_INFO   # default: WWW.SAMPLE.COM
 DB_CONNECTION_MODULE        # default: WWW.SAMPLE.COM  -> sending host name would be useful..
 DB_CONNECTION_DB_OP         # default: WEB-UPDATE
-DB_CONNECTION_ACTION        # NOT IN USE -> SENDING REPORT NAME
+DB_CONNECTION_ACTION        # NA - NOT IN USE -> APP IS SENDING IN 'READ' or 'MODIFY' so roles can be more limited
 
 
 DB_USERNAME                 # default TESTDB
