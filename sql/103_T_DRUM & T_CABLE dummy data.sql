@@ -21,6 +21,7 @@ BEGIN
     FOR C IN 1..10000 LOOP
         INSERT INTO T_DRUM (
             TNAME,
+            CABLETYPE_ID,
             LENGTH_RECIVED
         ) VALUES (
             'T-' || TO_CHAR(1000 + C),
