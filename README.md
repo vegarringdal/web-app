@@ -74,7 +74,7 @@ Will be react application
 -   `git clone https://github.com/vegarringdal/web-rad`
 -   open workspace file.
 -   `npm install`
--   `npm run gitclone`
+-   `npm run clone`
 -   `npm install` (so sub repo gets all installed..)
 
 -   start oracle express
