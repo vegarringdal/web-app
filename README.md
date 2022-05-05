@@ -41,11 +41,13 @@ beeing able to use returning in inserts
 
 ## web-rad-common
 
-This will not be something you edit, just fork
+This will not be something you edit, just fork (unless you want/need hardcoded api, TODO: do I want these under root, since user need some edits there anyway?)
 
 Will be common code for config, and if any utils need to be shared between frontend and backend.
 
 This will need to be selfcontained/no external libs
+
+If you make application rest api and want them hard coded, not just living in DB, you add them under `src/app_apiconfig` see `getAppConfig.ts`
 
 [repo](https://github.com/vegarringdal/web-rad-common)
 
@@ -73,8 +75,7 @@ Will be react application
 
 -   `git clone https://github.com/vegarringdal/web-rad`
 -   open workspace file.
--   `npm install`
--   `npm run clone`
+-   `npm run clone` (first time only, next time its `npm run pull` if you need to update all)
 -   `npm install` (so sub repo gets all installed..)
 
 -   start oracle express
