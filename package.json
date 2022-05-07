@@ -2,7 +2,7 @@
     "name": "web-update-source",
     "dockerImage": "something/awsome",
     "version": "0.0.0",
-    "description": "App for updateing data based on yaml config",
+    "description": "App template",
     "scripts": {
         "pull": "run-s -s -n pull:*",
         "pull:rad-root": "git pull",

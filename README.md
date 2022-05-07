@@ -41,13 +41,12 @@ beeing able to use returning in inserts
 
 ## web-rad-common
 
-This will not be something you edit, just fork (unless you want/need hardcoded api, TODO: do I want these under root, since user need some edits there anyway?)
+This will not be something you edit, just fork
 
 Will be common code for config, and if any utils need to be shared between frontend and backend.
 
 This will need to be selfcontained/no external libs
 
-If you make application rest api and want them hard coded, not just living in DB, you add them under `src/app_apiconfig` see `getAppConfig.ts`
 
 [repo](https://github.com/vegarringdal/web-rad-common)
 
