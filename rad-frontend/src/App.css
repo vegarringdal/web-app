@@ -1,0 +1,46 @@
+.app {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    --freegrid-font-size: 11px;
+    --freegrid-font-weight: 500;
+    --freegrid-font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family: var(--freegrid-font-family);
+    font-size: var(--freegrid-font-size);
+    font-weight: var(--freegrid-font-weight);
+}
+
+.loader {
+    border: 8px solid #313030; /* Light grey */
+    border-top: 8px solid #9ea0a0; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.relatedGrid {
+    width: 1000px;
+    height: 700px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* simplyfy tailwind usage for buttons */
+.default-button {
+    @apply m-2 p-2 bg-gray-200 w-32  hover:bg-gray-300 focus:outline-none  dark:bg-gray-700  dark:hover:bg-gray-600 dark:text-blue-400 font-semibold text-center;
+}

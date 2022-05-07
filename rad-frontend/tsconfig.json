@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "rootDirs": ["./src"],
+        "target": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "allowJs": false,
+        "baseUrl": ".",
+        "skipLibCheck": true,
+        "esModuleInterop": false,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "paths": {
+            "@rad-tools": ["../rad-guitools/src/index.ts"],
+            "@rad-common": ["../rad-common/src/index.ts"]
+        },
+        "forceConsistentCasingInFileNames": true,
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react"
+    },
+    "include": ["src/**/*.tsx", "src/**/*.ts", "./src/vite-env.d.ts"],
+    "exclude": ["node_modules", "src/**/*.test.ts"]
+}

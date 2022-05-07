@@ -1,19 +1,19 @@
 {
     "folders": [
         {
-            "name": "backend",
+            "name": "rad-backend",
             "path": "./rad-backend"
         },
         {
-            "name": "common",
+            "name": "rad-common",
             "path": "./rad-common"
         },
         {
-            "name": "frontend",
+            "name": "rad-frontend",
             "path": "./rad-frontend"
         },
         {
-            "name": "guitools",
+            "name": "rad-guitools",
             "path": "./rad-guitools"
         },
         {

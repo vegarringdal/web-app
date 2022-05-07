@@ -13,15 +13,21 @@ It will also have a lot of commits as I try and built something I want to use, s
 
 ## web-rad
 
-Will be root of application, you will only edit name/url to repos.
+Will be root / frontend of the application
 
-TODO: make list of edits needed for new project
+This will pull inn all other repos `web-rad-backend`, `web-rad-common` and `web-rad-guitools`
 
--   package.json repo urls/name/dockerimage, versionrc.json url
+* `rad-frontend` folder contains the react application you make
 
-This will pull inn all other repos
+Some minor edits will need to be done one root folder
+
+* package.json name & dockerImage
+* .versionrc url
+* add `.env` file for db
+
 
 [repo](https://github.com/vegarringdal/web-rad)
+
 
 ## web-rad-backend
 
@@ -60,15 +66,7 @@ Will use react & vanillajs libs.
 
 [repo](https://github.com/vegarringdal/web-rad-guitools)
 
-## web-rad-frontend
 
-This will be the part you fork template and edit.
-
-Will be main application using the other parts as help
-
-Will be react application
-
-[repo](https://github.com/vegarringdal/web-rad-frontend)
 
 # How to get started (with this app)
 
