@@ -9,17 +9,15 @@
             "path": "./rad-common"
         },
         {
-            "name": "rad-frontend",
-            "path": "./rad-frontend"
-        },
-        {
             "name": "rad-guitools",
             "path": "./rad-guitools"
         },
         {
-            "name": "root",
+            "name": "rad-application",
             "path": "./"
         }
     ],
-    "settings": {}
+    "settings": {
+        
+    }
 }

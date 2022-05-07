@@ -2,7 +2,6 @@
     "files.exclude": {
         "rad-backend/": true,
         "rad-common/": true,
-        "rad-frontend/": true,
         "rad-guitools/": true,
         "node_modules/": true
     }
