@@ -20,7 +20,7 @@ DECLARE
 BEGIN 
     
     IF(:NEW.DATA IS NOT NULL) THEN
-        V_APINAME := JSON_VALUE(:NEW.DATA, '$.APINAME');
+        V_APINAME := JSON_VALUE(:NEW.DATA, '$.apiName');
     END IF;
 
 
