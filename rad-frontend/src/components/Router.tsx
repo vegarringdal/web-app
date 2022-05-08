@@ -6,6 +6,7 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Admin } from "../routes/admin/admin";
 import { DrumAndCable } from "../routes/drumAndCable/drumAndCable";
+import { Dynamic } from "../routes/dynamic/dynamic";
 
 export function Router() {
     return (
@@ -19,6 +20,7 @@ export function Router() {
                         <Route path="/" element={<Welcome />}></Route>
                         <Route path="/admin/*" element={<Admin />}></Route>
                         <Route path="/drumAndCable/*" element={<DrumAndCable />}></Route>
+                        <Route path="/dynamic/*" element={<Dynamic />}></Route>
                     </Routes>
                 </div>
                 <Footer />

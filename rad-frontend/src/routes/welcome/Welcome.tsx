@@ -26,6 +26,12 @@ export function Welcome() {
                     >
                         Drum and cable
                     </Link>
+                    <Link
+                        to="dynamic"
+                        className="m-2 p-2 bg-gray-200 w-28  hover:bg-gray-300 focus:outline-none  dark:bg-gray-700  dark:hover:bg-gray-600 dark:text-blue-400 font-semibold"
+                    >
+                        dynamic
+                    </Link>
                 </div>
             </div>
             {/*  this is just to push everything else up */}
