@@ -2,6 +2,9 @@ import { ApiLoader, getDataControllerByName, GridControllerButtons, SimpleHtmlGr
 import React, { useEffect, useState } from "react";
 import json5 from "json5";
 
+// TODO: I need to imporve this..
+import { verifyApiConfig } from "../../../../../rad-common/src/utils/verifyApiConfig";
+
 export function Api() {
     const controllerName = "WEB_REST_API";
     return (
@@ -29,6 +32,7 @@ export function Api() {
 
 export function Details(props: { controllerName: string }) {
     const [data, setData] = useState({} as { NAME: string; DATA: string });
+    const [error, setError] = useState({} as any);
     const controller = getDataControllerByName(props.controllerName);
     const dataSource = controller.dataSource;
 
@@ -63,7 +67,12 @@ export function Details(props: { controllerName: string }) {
             <button
                 onClick={() => {
                     if (dataSource.currentEntity) {
-                        dataSource.currentEntity.DATA = JSON.stringify(json5.parse(data.DATA));
+                        const parsed = json5.parse(data.DATA);
+                        const [api, apiError, errorCount] = verifyApiConfig(parsed);
+                        if (errorCount) {
+                            setError(json5.stringify(apiError, { space: 4 }));
+                        }
+                        dataSource.currentEntity.DATA = json5.stringify(api);
                     }
                 }}
                 className="m-2 p-2 bg-gray-200 w-28  hover:bg-gray-300 focus:outline-none  dark:bg-gray-700  dark:hover:bg-gray-600 dark:text-blue-400 font-semibold"
@@ -81,6 +90,16 @@ export function Details(props: { controllerName: string }) {
                     obj.DATA = e.target.value;
                     setData(obj);
                 }}
+                onInput={(e: any) => {
+                    const obj = Object.assign({}, data);
+                    obj.DATA = e.target.value;
+                    setData(obj);
+                }}
+                className="flex-1 p-2 m-2 mt-0  bg-gray-700 text-gray-200 outline-none"
+            ></textarea>
+            {error ? "Errors:" : ""}
+            <textarea
+                value={error || ""}
                 className="flex-1 p-2 m-2 mt-0  bg-gray-700 text-gray-200 outline-none"
             ></textarea>
         </div>
