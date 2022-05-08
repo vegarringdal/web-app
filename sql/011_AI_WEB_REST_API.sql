@@ -14,14 +14,14 @@ CREATE OR REPLACE VIEW AI_WEB_REST_API AS
 CREATE OR REPLACE TRIGGER TR_AI_WEB_REST_API INSTEAD OF
     INSERT OR UPDATE OR DELETE ON AI_WEB_REST_API
     FOR EACH ROW
-declare
-   v_apiname varchar2(100);
+DECLARE
+   V_APINAME VARCHAR2(100);
 
 BEGIN 
     
-    if(:NEW.DATA is not null) then
-        v_apiname := JSON_VALUE(:NEW.DATA, '$.apiName');
-    end if;
+    IF(:NEW.DATA IS NOT NULL) THEN
+        V_APINAME := JSON_VALUE(:NEW.DATA, '$.APINAME');
+    END IF;
 
 
     -- INSERTING
@@ -31,7 +31,7 @@ BEGIN
             DATA,
             ENABLED
         ) VALUES (
-             v_apiname,
+             V_APINAME,
             :NEW.DATA,
             :NEW.ENABLED
         );
@@ -42,7 +42,7 @@ BEGIN
     IF UPDATING THEN
         UPDATE T_WEB_REST_API
         SET
-            NAME = v_apiname,
+            NAME = V_APINAME,
             DATA = :NEW.DATA,
             ENABLED = :NEW.ENABLED
         WHERE
