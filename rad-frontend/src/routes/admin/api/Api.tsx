@@ -43,9 +43,9 @@ export function Details(props: { controllerName: string }) {
             if (e?.type === "currentEntity") {
                 // generate new obj, so state see change
                 const obj = {} as Details;
-                obj.ID = dataSource.currentEntity?.ID;
-                obj.NAME = dataSource.currentEntity?.NAME;
-                obj.DATA = dataSource.currentEntity?.DATA;
+                obj.ID = dataSource.currentEntity?.ID || null;
+                obj.NAME = dataSource.currentEntity?.NAME || null;
+                obj.DATA = dataSource.currentEntity?.DATA || null;
 
                 obj.DATA = json5.stringify(json5.parse(obj.DATA), { space: 4 });
                 setData(obj);
@@ -71,8 +71,10 @@ export function Details(props: { controllerName: string }) {
                         const [api, apiError, errorCount] = verifyApiConfig(parsed);
                         if (errorCount) {
                             setError(json5.stringify(apiError, { space: 4 }));
-                            dataSource.currentEntity.DATA = json5.stringify(api);
                         } else {
+                            dataSource.currentEntity.DATA = json5.stringify(api);
+                            dataSource.currentEntity.NAME = api.apiName;
+                            controller.gridInterface.reRender();
                             setError("OK");
                         }
                     }
