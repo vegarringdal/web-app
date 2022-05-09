@@ -17,7 +17,7 @@ export const aiDrumApi: ApiInterface = {
         },
         {
             name: "CABLETYPE_ID",
-            type: "text",
+            type: "number",
             parentColumnsFromTo: [["_", "CABLETYPE"]]
         },
         {
