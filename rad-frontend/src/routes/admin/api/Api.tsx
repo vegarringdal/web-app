@@ -72,7 +72,7 @@ export function Details(props: { controllerName: string }) {
                         if (errorCount) {
                             setError(json5.stringify(apiError, { space: 4 }));
                         } else {
-                            dataSource.currentEntity.DATA = json5.stringify(api);
+                            dataSource.currentEntity.DATA = JSON.stringify(api); // Do not use JSON 5 here..
                             dataSource.currentEntity.NAME = api.apiName;
                             controller.gridInterface.reRender();
                             setError("OK");
