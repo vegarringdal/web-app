@@ -11,8 +11,8 @@ RUN rm -rf /usr/lib/oracle/21/client64/bin
 WORKDIR /usr/lib/oracle/21/client64/lib/
 RUN rm -rf *jdbc* *occi* *mysql* *jar
 
-# not use the nodejs image
-FROM node:16
+# not use the nodejs image, alpine would be nice, but oracle drivers gave me hell last time
+FROM node:slim
 
 #copy oracle client
 COPY --from=builder /usr/lib/oracle /usr/lib/oracle
