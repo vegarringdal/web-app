@@ -6,7 +6,7 @@ const buildDocker = async () => {
     let filePath = path.resolve(process.cwd(), `./package.json`);
     const packageJson = await readFile(filePath);
     const json = JSON.parse(packageJson);
-    const name = packageJson.dockerImage;
+    const name = json.dockerImage;
     logInfo(`About to push: ${name}:${json.version}`, "green");
 
     const err = await spawner("docker", ["push", `${name}:${json.version}`], process.cwd(), true);
