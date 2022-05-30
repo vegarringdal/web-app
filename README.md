@@ -104,8 +104,8 @@ next add `.env` to root
 # db connections
 AZURE_CLIENT_ID=add_your_own_ID
 AZURE_TENDANT_ID=add_your_tendantid
-# do not use graph scope, we will not be able to verify it
-AZURE_SCOPES=api://571a40a6-9b3c-481d-9fd2-1471b761f284/some api you have
+# do not use graph scope, we will not be able to verify it, you need to use "expose an API"
+AZURE_SCOPES=api://clientID/some api you have
 
 # logs (console logs out useful dev info)
 CONSOLE_SELECT=true
@@ -119,7 +119,6 @@ CONSOLE_INFO=true
 # http server
 SERVER_PORT         # default: 1080 - uses 1081 in dev mode, since its only API server
 SERVER_HOST         # default: 0.0.0.0
-SERVER_COMPRESSION  # default: true
 SERVER_API_ROOT     # default: /api - vitejs also uses this for proxy settings
 
 # DEVELOPMENT ONLY

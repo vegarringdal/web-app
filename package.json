@@ -1,5 +1,5 @@
 {
-    "name": "web-update-source",
+    "name": "web-rad",
     "dockerImage": "something/awsome",
     "version": "0.0.0",
     "description": "App template",
